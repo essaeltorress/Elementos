@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SICHARLAS</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="encabezado.." id="encabezado">
+        <img src="logo1.webp" alt="Logo SICHARLAS" style="width: 40px; height: 40px;">
+        <p>SICHARLAS</p>
+    </header>
+    <nav id="menu">
+    <ul style=" display: flex ;">
+        <li><a href = "index.html">Inicio</a></li> 
+
+        <li><a href = "listado.html">Listado</a></li> 
+        
+        <li><a>Charlas</a></li>
+
+        <li><a>Programación</a></li> 
+    </ul>
+    </nav>
+        <main>
+            <section>
+                <h2>Registro de Participantes</h2>
+                <form id="registro">
+                    <div>
+                        <label for="nombre">Nombre del Participante</label>
+                        <input type="text" id="nombre" required>
+                    </div>
+
+                    <div>
+                        <label for="cuenta">Número de Cuenta</label>
+                        <input type="number" id="cuenta" required>
+                    </div>
+
+                     <div>
+                        <label for="charla">Nombre de la charla</label>
+                        <input type="text" id="charla" required>
+                    </div>
+
+                     <div>
+                        <label for="cupo">Cupo Máximo</label>
+                        <input type="number" id="cupo" min="1" required>
+                    </div>
+
+                    <div>
+                        <button type="submit">Registrar</button>
+                        <button type="reset">Cancelar</button>
+                    </div>
+                </form>
+                <script>
+                    const form = document.getElementById('registro');
+                    form.addEventListener('submit', (event) => {
+                        event.preventDefault();
+                        
+                        const registros = JSON.parse(localStorage.getItem('mis_registros')) || [];
+                        
+                        const nuevoRegistro = {
+                            nombre: document.getElementById('nombre').value,
+                            cuenta: document.getElementById('cuenta').value,
+                            charla: document.getElementById('charla').value,
+                            cupo: document.getElementById('cupo').value
+                        };
+
+                        registros.push(nuevoRegistro);
+                        
+                        localStorage.setItem('mis_registros', JSON.stringify(registros));
+                        
+                        form.reset();
+                        alert ("Registro exitoso");
+
+                        console.log("Registros:");
+                        registros.forEach((reg, index) => {
+                            console.log(`Registro ${index + 1}:`, reg);
+                        });
+                    });
+                </script>
+            </section>
+        </main>
+</body>
+</html>

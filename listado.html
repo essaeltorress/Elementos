@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SICHARLAS</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="encabezado.." id="encabezado">
+        <p>SICHARLAS</p>
+    </header>
+    <nav id="menu">
+    <ul style=" display: flex ;">
+        <li><a href = "index.html">Inicio</a></li> 
+
+        <li><a href = "listado.html">Listado</a></li> 
+        
+        <li><a>Charlas</a></li>
+
+        <li><a>Programación</a></li> 
+    </ul>
+    </nav>
+
+    <main>
+        <h2>Listado de Participantes</h2>
+        <table border="1" style="width: 100%; margin-top: 20px;">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Número de Cuenta</th>
+                    <th>Charla</th>
+                    <th>Cupo Máximo</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpoTabla">
+                </tbody>
+        </table>
+    </main>
+
+    <script>
+        const registrosGuardados = JSON.parse(localStorage.getItem('mis_registros')) || [];
+        const tabla = document.getElementById('cuerpoTabla');
+
+        if (registrosGuardados.length === 0) {
+            tabla.innerHTML = '<tr><td colspan="4" style="text-align:center;">No hay registros cargados.</td></tr>';
+        } else {
+            registrosGuardados.forEach(reg => {
+                const fila = document.createElement('tr');
+                fila.innerHTML = `
+                    <td>${reg.nombre}</td>
+                    <td>${reg.cuenta}</td>
+                    <td>${reg.charla}</td>
+                    <td>${reg.cupo}</td>
+                `;
+                tabla.appendChild(fila);
+            });
+        }
+    </script>
+</body>
+</html>

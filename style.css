@@ -1,0 +1,25 @@
+#encabezado {
+    background-color: rgba(246, 246, 246, 0.973);
+    height: 100px;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    font-size: 32px;
+}
+
+#menu {
+    background-color: rgb(35, 109, 230);
+    padding: 1px;
+}
+
+#menu ul {
+display: flex;
+justify-content: space-around;
+list-style: none;
+padding: 0;
+}
+
+#estiloDeLink1 {
+    display: inline-block
+}
+
